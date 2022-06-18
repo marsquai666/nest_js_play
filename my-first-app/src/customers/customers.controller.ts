@@ -1,9 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Next, Req, Header, Headers, HttpStatus, HttpCode, Redirect } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Next, Req, Header, Headers, HttpStatus, HttpCode } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 import { IncomingMessage } from 'http';
 import { IncomingHttpHeaders } from 'http2';
-import { sample } from 'rxjs';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -29,7 +28,8 @@ export class CustomersController {
   }
 
   @Post()
-  create(@Body() createCustomerDto: CreateCustomerDto) {
+  create(@Req() req: Request, @Body() createCustomerDto: CreateCustomerDto) {
+    console.log(req);
     console.log(createCustomerDto);
     return this.customersService.create(createCustomerDto);
   }
