@@ -3,7 +3,8 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {abortOnError: false});
+  const app = await NestFactory.create(AppModule, {abortOnError: false, cors: false});
+  app.enableCors()
   await app.listen(3000);
 }
 bootstrap();

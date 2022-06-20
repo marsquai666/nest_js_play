@@ -1,6 +1,11 @@
+// datasource db {
+//   provider = "postgresql"
+//   url      = "postgresql://postgres:example@localhost:5432/my_first_app"
+// }
+
 datasource db {
-  provider = "postgresql"
-  url      = "postgresql://postgres:example@localhost:5432/my_first_app"
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {

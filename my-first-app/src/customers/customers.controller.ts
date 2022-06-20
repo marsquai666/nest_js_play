@@ -28,10 +28,8 @@ export class CustomersController {
   }
 
   @Post()
-  create(@Req() req: Request, @Body() createCustomerDto: CreateCustomerDto) {
-    console.log(req);
-    console.log(createCustomerDto);
-    return this.customersService.create(createCustomerDto);
+  async create(@Req() req: Request, @Body() createCustomerDto: CreateCustomerDto) {
+    return await this.customersService.create(createCustomerDto);
   }
 
   @Get()
