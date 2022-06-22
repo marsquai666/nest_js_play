@@ -21,6 +21,14 @@ model Customer {
   name  String
   age Int
   email String  @unique
-  is_active Boolean
+  isActive Boolean @default(true)
   posts Post[]
 }
+
+model BookMark {
+  id Int @id @default(autoincrement())
+  title String
+  url String
+  screenShotImageBuffer Bytes @default("")
+}
+

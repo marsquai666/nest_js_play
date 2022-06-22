@@ -13,7 +13,7 @@ export class CustomersService {
     const result = await prismaClient.customer.create({
       data: {
         ...createCustomerDto,
-        is_active: true,
+        isActive: true,
         posts: {
           create: {
             title: `Joined new user, "${createCustomerDto.name}!!!"`
@@ -36,7 +36,7 @@ export class CustomersService {
       },
       where: {
         AND: {
-          is_active : true
+          isActive : true
         }
       }
     });
