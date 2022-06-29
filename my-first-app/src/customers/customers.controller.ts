@@ -27,59 +27,59 @@ export class CustomersController {
     console.log('instantiate CustomersController');
   }
 
-  @Post()
-  async create(@Req() req: Request, @Body() createCustomerDto: CreateCustomerDto) {
-    return await this.customersService.create(createCustomerDto);
-  }
+  // @Post()
+  // async create(@Req() req: Request, @Body() createCustomerDto: CreateCustomerDto) {
+  //   return await this.customersService.create(createCustomerDto);
+  // }
 
-  @Get()
-  @HttpCode(HttpStatus.CREATED)
-  findAll() {
-    // const promise = new Promise<string>((resolve, reject) => {
-    //   setInterval(() => {
-    //     resolve('Hello World');
-    //   }, 3000);
-    // });
+  // @Get()
+  // @HttpCode(HttpStatus.CREATED)
+  // findAll() {
+  //   // const promise = new Promise<string>((resolve, reject) => {
+  //   //   setInterval(() => {
+  //   //     resolve('Hello World');
+  //   //   }, 3000);
+  //   // });
 
-    // const result = await promise;
+  //   // const result = await promise;
 
-    // return result;
-    return this.customersService.findAll();
-  }
+  //   // return result;
+  //   return this.customersService.findAll();
+  // }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string, @Param('name') name: string) {
-    const prismaClient = new PrismaClient();
-    const result = await prismaClient.customer.findUnique({
-      where: {
-        id: Number(id)
-      }
-    });
-    return result;
-  }
+  // @Get(':id')
+  // async findOne(@Param('id') id: string, @Param('name') name: string) {
+  //   const prismaClient = new PrismaClient();
+  //   const result = await prismaClient.customer.findUnique({
+  //     where: {
+  //       id: Number(id)
+  //     }
+  //   });
+  //   return result;
+  // }
 
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
-    const prismaClient = new PrismaClient();
-    const result = await prismaClient.customer.update({
-      where: {
-        id: Number(id)
-      },
-      data: updateCustomerDto
-    });
+  // @Patch(':id')
+  // async update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+  //   const prismaClient = new PrismaClient();
+  //   const result = await prismaClient.customer.update({
+  //     where: {
+  //       id: Number(id)
+  //     },
+  //     data: updateCustomerDto
+  //   });
 
-    return result;
-  }
+  //   return result;
+  // }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    const prismaClient = new PrismaClient();
-    const result = await prismaClient.customer.delete({
-      where: {
-        id: Number(id)
-      }
-    });
+  // @Delete(':id')
+  // async remove(@Param('id') id: string) {
+  //   const prismaClient = new PrismaClient();
+  //   const result = await prismaClient.customer.delete({
+  //     where: {
+  //       id: Number(id)
+  //     }
+  //   });
 
-    return result;
-  }
+  //   return result;
+  // }
 }

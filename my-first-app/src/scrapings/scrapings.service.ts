@@ -23,8 +23,20 @@ export class ScrapingsService {
       throw new Error('this page is now avairable now.')
     }
 
+    let imageBuffer:Buffer;
     // スクリーンショットのデータ取得
-    const imageBuffer = await page.screenshot({type: 'jpeg'}) as Buffer;
+    if(createScrapingDto.format === 'png'){
+      if(createScrapingDto.selector){
+        const target = await page.$(createScrapingDto.selector);
+        imageBuffer = await target.screenshot() as Buffer;
+      }else{
+        imageBuffer = await page.screenshot({type: 'png', fullPage: true}) as Buffer;
+      }
+    }else if(createScrapingDto.format === 'pdf'){
+      imageBuffer = await page.pdf({printBackground: true});
+    }else {
+      throw new Error("format must be 'pdf' or 'png'");
+    }
 
     // データの作成
     const prismaClient = new PrismaClient();

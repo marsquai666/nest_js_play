@@ -15,11 +15,17 @@ export class ScrapingsController {
   @Post()
   async create(@Body() createScrapingDto: CreateScrapingDto, @Res({passthrough: true}) res: Response) {
     const result = await this.scrapingsService.create(createScrapingDto);
-
-    res.set({
-      'Content-Type': 'image/jpeg',
-      'Content-Disposition': 'attachment; filename="screenshot.jpeg"',
-    });
+    if(createScrapingDto.format === 'png'){
+      res.set({
+        'Content-Type': 'image/jpeg',
+        'Content-Disposition': 'attachment; filename="screenshot.png"',
+      });
+    }else if(createScrapingDto.format === 'pdf'){
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="screenshot.pdf"',
+      });
+    }
 
     return new StreamableFile(result.screenShotImageBuffer);
   }
@@ -30,18 +36,18 @@ export class ScrapingsController {
     return result.map(data => {return {...data, screenShotImageBuffer: 'file'}})
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.scrapingsService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.scrapingsService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateScrapingDto: UpdateScrapingDto) {
-    return this.scrapingsService.update(+id, updateScrapingDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateScrapingDto: UpdateScrapingDto) {
+  //   return this.scrapingsService.update(+id, updateScrapingDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.scrapingsService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.scrapingsService.remove(+id);
+  // }
 }
