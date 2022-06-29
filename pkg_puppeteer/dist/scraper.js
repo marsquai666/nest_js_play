@@ -16,9 +16,9 @@ const puppeteer_1 = __importDefault(require("puppeteer"));
 class Scraper {
     constructor() {
     }
-    screenshot(url, format, output, chromePath, selector) {
+    screenshot(url, format, output, selector) {
         return __awaiter(this, void 0, void 0, function* () {
-            const browser = yield puppeteer_1.default.launch({ args: ['--no-sandbox'], executablePath: chromePath });
+            const browser = yield puppeteer_1.default.launch({ args: ['--no-sandbox'] });
             const page = yield browser.newPage();
             const response = yield page.goto(url, { waitUntil: 'networkidle0' });
             if (!response || !response.ok()) {

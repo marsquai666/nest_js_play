@@ -2,11 +2,10 @@ import puppeteer, { Page } from "puppeteer";
 
 export default class Scraper {
   constructor(){
-
   }
 
-  async screenshot(url: string, format: 'png' | 'pdf', output: string, chromePath: string, selector: string): Promise<void> {
-    const browser = await puppeteer.launch({args:['--no-sandbox'], executablePath: chromePath})
+  async screenshot(url: string, format: 'png' | 'pdf', output: string, selector: string): Promise<void> {
+    const browser = await puppeteer.launch({args:['--no-sandbox']})
     const page = await browser.newPage();
     const response = await page.goto(url, {waitUntil: 'networkidle0'});
 

@@ -1,0 +1,1 @@
+node ./dist/index.js --url https://google.com --format png --output sample.png --selector body
